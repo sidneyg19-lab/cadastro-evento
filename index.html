@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Cadastro do Evento</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f6f8;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      color: #1f2937;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 32px;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .header h1 {
+      font-size: 28px;
+      margin-bottom: 8px;
+      color: #111827;
+    }
+
+    .header p {
+      font-size: 15px;
+      line-height: 1.5;
+      color: #6b7280;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .required {
+      color: #dc2626;
+    }
+
+    input {
+      width: 100%;
+      height: 52px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      padding: 0 14px;
+      font-size: 16px;
+      outline: none;
+      transition: 0.2s;
+      background: #fff;
+    }
+
+    input:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
+    }
+
+    input::placeholder {
+      color: #9ca3af;
+    }
+
+    .helper {
+      margin-top: 6px;
+      color: #6b7280;
+      font-size: 12px;
+    }
+
+    button {
+      width: 100%;
+      height: 54px;
+      border: none;
+      border-radius: 10px;
+      background: #2563eb;
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+      margin-top: 5px;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    button:disabled {
+      background: #93c5fd;
+      cursor: not-allowed;
+    }
+
+    .mensagem {
+      display: none;
+      margin-top: 20px;
+      padding: 14px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .mensagem.sucesso {
+      display: block;
+      background: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+    }
+
+    .mensagem.erro {
+      display: block;
+      background: #fef2f2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+
+    .privacidade {
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid #e5e7eb;
+      font-size: 12px;
+      line-height: 1.5;
+      color: #6b7280;
+      text-align: center;
+    }
+
+    @media (max-width: 520px) {
+      body {
+        align-items: flex-start;
+        padding: 15px;
+      }
+
+      .card {
+        padding: 25px 20px;
+        margin-top: 15px;
+      }
+
+      .header h1 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="container">
+
+    <div class="card">
+
+      <div class="header">
+        <h1>Cadastro</h1>
+        <p>
+          Preencha seus dados abaixo para realizar o cadastro.
+        </p>
+      </div>
+
+      <form id="formCadastro">
+
+        <div class="form-group">
+          <label for="nome">
+            Nome completo <span class="required">*</span>
+          </label>
+
+          <input
+            type="text"
+            id="nome"
+            name="nome"
+            placeholder="Digite seu nome completo"
+            autocomplete="name"
+            maxlength="120"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="telefone">
+            Telefone / WhatsApp <span class="required">*</span>
+          </label>
+
+          <input
+            type="tel"
+            id="telefone"
+            name="telefone"
+            placeholder="(61) 99999-9999"
+            autocomplete="tel"
+            inputmode="numeric"
+            maxlength="15"
+            required
+          >
+
+          <div class="helper">
+            Informe o telefone com DDD.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="indicacao">
+            Indicação
+          </label>
+
+          <input
+            type="text"
+            id="indicacao"
+            name="indicacao"
+            placeholder="Nome de quem indicou"
+            maxlength="120"
+          >
+        </div>
+
+        <button type="submit" id="btnCadastrar">
+          Realizar cadastro
+        </button>
+
+        <div id="mensagem" class="mensagem"></div>
+
+      </form>
+
+      <div class="privacidade">
+        Os dados informados serão utilizados exclusivamente para a
+        finalidade informada para este cadastro e serão tratados de
+        acordo com a legislação aplicável de proteção de dados.
+      </div>
+
+    </div>
+
+  </main>
+
+  <script>
+
+    const API_URL =
+      "https://script.google.com/macros/s/AKfycbxV527r9pJuI0yps0mlLqm4PYBkvfwsDn5rUHhslXfYmPG0IXKHyo4wWCoqq5CSR81nAg/exec";
+
+    const form = document.getElementById("formCadastro");
+    const telefoneInput = document.getElementById("telefone");
+    const botao = document.getElementById("btnCadastrar");
+    const mensagem = document.getElementById("mensagem");
+
+    // Máscara de telefone
+    telefoneInput.addEventListener("input", function () {
+
+      let valor = this.value.replace(/\D/g, "");
+
+      valor = valor.substring(0, 11);
+
+      if (valor.length > 10) {
+
+        valor = valor.replace(
+          /^(\d{2})(\d{5})(\d{4})$/,
+          "($1) $2-$3"
+        );
+
+      } else if (valor.length > 6) {
+
+        valor = valor.replace(
+          /^(\d{2})(\d{4})(\d{0,4})$/,
+          "($1) $2-$3"
+        );
+
+      } else if (valor.length > 2) {
+
+        valor = valor.replace(
+          /^(\d{2})(\d+)/,
+          "($1) $2"
+        );
+
+      } else if (valor.length > 0) {
+
+        valor = valor.replace(
+          /^(\d{0,2})/,
+          "($1"
+        );
+      }
+
+      this.value = valor;
+    });
+
+
+    function mostrarMensagem(texto, tipo) {
+
+      mensagem.textContent = texto;
+      mensagem.className = "mensagem " + tipo;
+
+    }
+
+
+    form.addEventListener("submit", async function (event) {
+
+      event.preventDefault();
+
+      mensagem.className = "mensagem";
+      mensagem.textContent = "";
+
+      const nome =
+        document.getElementById("nome").value.trim();
+
+      const telefone =
+        telefoneInput.value.replace(/\D/g, "");
+
+      const indicacao =
+        document.getElementById("indicacao").value.trim();
+
+
+      if (nome.length < 3) {
+
+        mostrarMensagem(
+          "Informe seu nome completo.",
+          "erro"
+        );
+
+        return;
+      }
+
+
+      if (
+        telefone.length < 10 ||
+        telefone.length > 11
+      ) {
+
+        mostrarMensagem(
+          "Informe um telefone válido com DDD.",
+          "erro"
+        );
+
+        return;
+      }
+
+
+      botao.disabled = true;
+      botao.textContent = "Enviando...";
+
+
+      try {
+
+        const resposta = await fetch(API_URL, {
+
+          method: "POST",
+
+          headers: {
+            "Content-Type": "text/plain;charset=utf-8"
+          },
+
+          body: JSON.stringify({
+            nome: nome,
+            telefone: telefone,
+            indicacao: indicacao
+          })
+
+        });
+
+
+        const dados = await resposta.json();
+
+
+        if (dados.sucesso) {
+
+          mostrarMensagem(
+            "Cadastro realizado com sucesso!",
+            "sucesso"
+          );
+
+          form.reset();
+
+        } else {
+
+          mostrarMensagem(
+            dados.mensagem ||
+            "Não foi possível realizar o cadastro.",
+            "erro"
+          );
+        }
+
+
+      } catch (erro) {
+
+        console.error(erro);
+
+        mostrarMensagem(
+          "Não foi possível enviar o cadastro. Verifique sua conexão e tente novamente.",
+          "erro"
+        );
+
+      } finally {
+
+        botao.disabled = false;
+        botao.textContent = "Realizar cadastro";
+
+      }
+
+    });
+
+  </script>
+
+</body>
+</html>
