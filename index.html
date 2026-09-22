@@ -3,430 +3,1003 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1e40af">
 
- <title>Formulário do Evento</title>
+  <title>Formulário do Evento</title>
 
-<meta name="description" content="Formulário de cadastro do evento.">
+  <meta name="description" content="Formulário de cadastro do evento.">
 
-<meta property="og:title" content="Formulário do Evento">
-<meta property="og:description" content="Acesse o formulário para realizar seu cadastro.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://sidneyg19-lab.github.io/cadastro-evento/">
+  <meta property="og:title" content="Formulário do Evento">
+  <meta property="og:description" content="Acesse o formulário para realizar seu cadastro.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sidneyg19-lab.github.io/cadastro-evento/">
 
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Formulário do Evento">
-<meta name="twitter:description" content="Acesse o formulário para realizar seu cadastro.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Formulário do Evento">
+  <meta name="twitter:description" content="Acesse o formulário para realizar seu cadastro.">
 
   <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --primary-light: #eff6ff;
+      --text: #172033;
+      --muted: #667085;
+      --border: #d8dee9;
+      --background: #f5f7fb;
+      --success: #067647;
+      --success-bg: #ecfdf3;
+      --error: #b42318;
+      --error-bg: #fef3f2;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
+    html {
+      -webkit-text-size-adjust: 100%;
+    }
+
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f4f6f8;
       min-height: 100vh;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top, #eaf1ff 0, transparent 34%),
+        var(--background);
+
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 20px;
-      color: #1f2937;
+
+      padding: 32px 20px;
     }
 
-    .container {
+    .page {
       width: 100%;
-      max-width: 480px;
+      max-width: 500px;
     }
 
     .card {
-      background: #ffffff;
-      border-radius: 18px;
-      padding: 32px;
-      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+      background: rgba(255, 255, 255, 0.98);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 24px;
+      overflow: hidden;
+
+      box-shadow:
+        0 24px 60px rgba(16, 24, 40, 0.10),
+        0 4px 14px rgba(16, 24, 40, 0.05);
+    }
+
+    .topbar {
+      height: 7px;
+      background: linear-gradient(
+        90deg,
+        #1d4ed8,
+        #2563eb,
+        #60a5fa
+      );
+    }
+
+    .content {
+      padding: 34px 36px 32px;
     }
 
     .header {
       text-align: center;
-      margin-bottom: 28px;
+      margin-bottom: 30px;
+    }
+
+    .icon-header {
+      width: 56px;
+      height: 56px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin: 0 auto 17px;
+
+      border-radius: 17px;
+
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .icon-header svg {
+      width: 27px;
+      height: 27px;
     }
 
     .header h1 {
-      font-size: 28px;
-      margin-bottom: 8px;
-      color: #111827;
+      font-size: 27px;
+      line-height: 1.2;
+      letter-spacing: -0.5px;
+      margin-bottom: 9px;
+      color: #101828;
     }
 
     .header p {
-      font-size: 15px;
-      line-height: 1.5;
-      color: #6b7280;
+      max-width: 350px;
+      margin: auto;
+
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--muted);
     }
 
     .form-group {
-      margin-bottom: 20px;
+      margin-bottom: 21px;
     }
 
     label {
       display: block;
-      margin-bottom: 7px;
-      font-weight: 600;
+      margin-bottom: 8px;
+
       font-size: 14px;
+      font-weight: 650;
+      color: #344054;
     }
 
     .required {
-      color: #dc2626;
+      color: #d92d20;
+    }
+
+    .input-wrapper {
+      position: relative;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+
+      width: 20px;
+      height: 20px;
+
+      color: #98a2b3;
+
+      pointer-events: none;
     }
 
     input {
       width: 100%;
-      height: 52px;
-      border: 1px solid #d1d5db;
-      border-radius: 10px;
-      padding: 0 14px;
+      height: 55px;
+
+      border: 1px solid var(--border);
+      border-radius: 12px;
+
+      padding: 0 15px 0 47px;
+
+      font-family: inherit;
       font-size: 16px;
+
+      color: #101828;
+      background: #ffffff;
+
       outline: none;
-      transition: 0.2s;
-      background: #fff;
+
+      transition:
+        border-color 0.2s,
+        box-shadow 0.2s,
+        background 0.2s;
+    }
+
+    input:hover {
+      border-color: #b9c2d0;
     }
 
     input:focus {
-      border-color: #2563eb;
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
+      border-color: var(--primary);
+
+      box-shadow:
+        0 0 0 4px rgba(37, 99, 235, 0.10);
+
+      background: #fff;
+    }
+
+    input:focus + .focus-placeholder {
+      color: var(--primary);
     }
 
     input::placeholder {
-      color: #9ca3af;
+      color: #98a2b3;
     }
 
     .helper {
-      margin-top: 6px;
-      color: #6b7280;
+      margin-top: 7px;
+
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
       font-size: 12px;
+      line-height: 1.4;
+
+      color: var(--muted);
     }
 
-    button {
+    .helper svg {
+      width: 14px;
+      height: 14px;
+      flex: 0 0 auto;
+    }
+
+    .submit-button {
       width: 100%;
-      height: 54px;
-      border: none;
-      border-radius: 10px;
-      background: #2563eb;
-      color: white;
+      height: 56px;
+
+      margin-top: 4px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+
+      border: 0;
+      border-radius: 12px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #2563eb,
+          #1d4ed8
+        );
+
+      color: #ffffff;
+
+      font-family: inherit;
       font-size: 16px;
       font-weight: 700;
+
       cursor: pointer;
-      transition: 0.2s;
-      margin-top: 5px;
+
+      box-shadow:
+        0 8px 18px rgba(37, 99, 235, 0.20);
+
+      transition:
+        transform 0.15s,
+        box-shadow 0.2s,
+        opacity 0.2s;
     }
 
-    button:hover {
-      background: #1d4ed8;
+    .submit-button:hover {
+      transform: translateY(-1px);
+
+      box-shadow:
+        0 11px 24px rgba(37, 99, 235, 0.25);
     }
 
-    button:disabled {
-      background: #93c5fd;
+    .submit-button:active {
+      transform: translateY(0);
+    }
+
+    .submit-button:disabled {
       cursor: not-allowed;
+      opacity: 0.65;
+      transform: none;
+    }
+
+    .submit-button svg {
+      width: 19px;
+      height: 19px;
+    }
+
+    .spinner {
+      width: 19px;
+      height: 19px;
+
+      border: 2px solid rgba(255,255,255,0.45);
+      border-top-color: #ffffff;
+      border-radius: 50%;
+
+      animation: spin 0.7s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
     }
 
     .mensagem {
       display: none;
-      margin-top: 20px;
-      padding: 14px;
-      border-radius: 10px;
+
+      margin-top: 18px;
+      padding: 14px 15px;
+
+      border-radius: 12px;
+
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.45;
+
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+
       text-align: center;
-      font-size: 14px;
-      line-height: 1.4;
+    }
+
+    .mensagem svg {
+      width: 19px;
+      height: 19px;
+      flex: 0 0 auto;
     }
 
     .mensagem.sucesso {
-      display: block;
-      background: #ecfdf5;
-      color: #065f46;
-      border: 1px solid #a7f3d0;
+      display: flex;
+
+      color: var(--success);
+      background: var(--success-bg);
+
+      border: 1px solid #abefc6;
     }
 
     .mensagem.erro {
-      display: block;
-      background: #fef2f2;
-      color: #991b1b;
-      border: 1px solid #fecaca;
+      display: flex;
+
+      color: var(--error);
+      background: var(--error-bg);
+
+      border: 1px solid #fecdca;
     }
 
-    .privacidade {
-      margin-top: 22px;
-      padding-top: 18px;
-      border-top: 1px solid #e5e7eb;
-      font-size: 12px;
-      line-height: 1.5;
-      color: #6b7280;
+    .privacy {
+      margin-top: 27px;
+      padding-top: 21px;
+
+      border-top: 1px solid #eaecf0;
+
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .privacy-icon {
+      width: 29px;
+      height: 29px;
+
+      flex: 0 0 auto;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 8px;
+
+      color: #667085;
+      background: #f2f4f7;
+    }
+
+    .privacy-icon svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .privacy p {
+      font-size: 11px;
+      line-height: 1.55;
+      color: #667085;
+    }
+
+    .footer {
       text-align: center;
+
+      margin-top: 18px;
+
+      font-size: 11px;
+      color: #98a2b3;
     }
 
     @media (max-width: 520px) {
+
       body {
         align-items: flex-start;
-        padding: 15px;
+        padding: 18px 14px 28px;
       }
 
       .card {
-        padding: 25px 20px;
-        margin-top: 15px;
+        border-radius: 21px;
+      }
+
+      .content {
+        padding: 27px 23px 25px;
+      }
+
+      .header {
+        margin-bottom: 26px;
       }
 
       .header h1 {
         font-size: 24px;
       }
+
+      .icon-header {
+        width: 52px;
+        height: 52px;
+        margin-bottom: 15px;
+      }
+
+      input {
+        height: 54px;
+      }
+
+      .submit-button {
+        height: 55px;
+      }
+    }
+
+    @media (max-width: 360px) {
+
+      .content {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
     }
   </style>
 </head>
 
 <body>
 
-  <main class="container">
+  <main class="page">
 
-    <div class="card">
+    <section class="card">
 
-      <div class="header">
-        <h1>Cadastro</h1>
-        <p>
-          Preencha seus dados abaixo para realizar o cadastro.
-        </p>
-      </div>
+      <div class="topbar"></div>
 
-      <form id="formCadastro">
+      <div class="content">
 
-        <div class="form-group">
-          <label for="nome">
-            Nome completo <span class="required">*</span>
-          </label>
+        <header class="header">
 
-          <input
-            type="text"
-            id="nome"
-            name="nome"
-            placeholder="Digite seu nome completo"
-            autocomplete="name"
-            maxlength="120"
-            required
-          >
-        </div>
+          <div class="icon-header">
 
-        <div class="form-group">
-          <label for="telefone">
-            Telefone / WhatsApp <span class="required">*</span>
-          </label>
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M19 8v6"/>
+              <path d="M22 11h-6"/>
+            </svg>
 
-          <input
-            type="tel"
-            id="telefone"
-            name="telefone"
-            placeholder="(61) 99999-9999"
-            autocomplete="tel"
-            inputmode="numeric"
-            maxlength="15"
-            required
-          >
-
-          <div class="helper">
-            Informe o telefone com DDD.
           </div>
-        </div>
 
-        <div class="form-group">
-          <label for="indicacao">
-            Indicação
-          </label>
+          <h1>Formulário do Evento</h1>
 
-          <input
-            type="text"
-            id="indicacao"
-            name="indicacao"
-            placeholder="Nome de quem indicou"
-            maxlength="120"
+          <p>
+            Preencha as informações abaixo para realizar seu cadastro.
+          </p>
+
+        </header>
+
+
+        <form id="formCadastro">
+
+          <div class="form-group">
+
+            <label for="nome">
+              Nome completo
+              <span class="required">*</span>
+            </label>
+
+            <div class="input-wrapper">
+
+              <svg
+                class="input-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <circle cx="12" cy="8" r="4"/>
+                <path d="M4 21a8 8 0 0 1 16 0"/>
+              </svg>
+
+              <input
+                type="text"
+                id="nome"
+                name="nome"
+                placeholder="Digite seu nome completo"
+                autocomplete="name"
+                maxlength="120"
+                required
+              >
+
+            </div>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="telefone">
+              Telefone / WhatsApp
+              <span class="required">*</span>
+            </label>
+
+            <div class="input-wrapper">
+
+              <svg
+                class="input-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2
+                19.79 19.79 0 0 1-8.63-3.07
+                19.5 19.5 0 0 1-6-6
+                19.79 19.79 0 0 1-3.07-8.67
+                A2 2 0 0 1 4.11 2h3
+                a2 2 0 0 1 2 1.72
+                12.84 12.84 0 0 0 .7 2.81
+                2 2 0 0 1-.45 2.11L8.09 9.91
+                a16 16 0 0 0 6 6l1.27-1.27
+                a2 2 0 0 1 2.11-.45
+                12.84 12.84 0 0 0 2.81.7
+                A2 2 0 0 1 22 16.92z"/>
+              </svg>
+
+              <input
+                type="tel"
+                id="telefone"
+                name="telefone"
+                placeholder="(61) 99999-9999"
+                autocomplete="tel"
+                inputmode="numeric"
+                maxlength="15"
+                required
+              >
+
+            </div>
+
+            <div class="helper">
+
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="9"/>
+                <path d="M12 11v5"/>
+                <path d="M12 8h.01"/>
+              </svg>
+
+              Informe o telefone com DDD.
+
+            </div>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="indicacao">
+              Indicação
+            </label>
+
+            <div class="input-wrapper">
+
+              <svg
+                class="input-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+
+              <input
+                type="text"
+                id="indicacao"
+                name="indicacao"
+                placeholder="Nome de quem indicou"
+                maxlength="120"
+              >
+
+            </div>
+
+          </div>
+
+
+          <button
+            type="submit"
+            id="btnCadastrar"
+            class="submit-button"
           >
+
+            <span id="conteudoBotao">
+              Realizar cadastro
+            </span>
+
+            <svg
+              id="iconeBotao"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14"/>
+              <path d="m13 6 6 6-6 6"/>
+            </svg>
+
+          </button>
+
+
+          <div
+            id="mensagem"
+            class="mensagem"
+            role="status"
+            aria-live="polite"
+          ></div>
+
+        </form>
+
+
+        <div class="privacy">
+
+          <div class="privacy-icon">
+
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <rect x="5" y="10" width="14" height="11" rx="2"/>
+              <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+            </svg>
+
+          </div>
+
+          <p>
+            Os dados informados serão utilizados para a finalidade
+            informada neste cadastro e tratados de acordo com a
+            legislação aplicável de proteção de dados.
+          </p>
+
         </div>
 
-        <button type="submit" id="btnCadastrar">
-          Realizar cadastro
-        </button>
-
-        <div id="mensagem" class="mensagem"></div>
-
-      </form>
-
-      <div class="privacidade">
-        Os dados informados serão utilizados exclusivamente para a
-        finalidade informada para este cadastro e serão tratados de
-        acordo com a legislação aplicável de proteção de dados.
       </div>
 
+    </section>
+
+    <div class="footer">
+      Ambiente seguro • Cadastro do evento
     </div>
 
   </main>
+
 
   <script>
 
     const API_URL =
       "https://script.google.com/macros/s/AKfycbxV527r9pJuI0yps0mlLqm4PYBkvfwsDn5rUHhslXfYmPG0IXKHyo4wWCoqq5CSR81nAg/exec";
 
-    const form = document.getElementById("formCadastro");
-    const telefoneInput = document.getElementById("telefone");
-    const botao = document.getElementById("btnCadastrar");
-    const mensagem = document.getElementById("mensagem");
 
-    // Máscara de telefone
-    telefoneInput.addEventListener("input", function () {
+    const form =
+      document.getElementById("formCadastro");
 
-      let valor = this.value.replace(/\D/g, "");
+    const telefoneInput =
+      document.getElementById("telefone");
 
-      valor = valor.substring(0, 11);
+    const botao =
+      document.getElementById("btnCadastrar");
 
-      if (valor.length > 10) {
+    const mensagem =
+      document.getElementById("mensagem");
 
-        valor = valor.replace(
-          /^(\d{2})(\d{5})(\d{4})$/,
-          "($1) $2-$3"
-        );
+    const conteudoBotao =
+      document.getElementById("conteudoBotao");
 
-      } else if (valor.length > 6) {
+    const iconeBotao =
+      document.getElementById("iconeBotao");
 
-        valor = valor.replace(
-          /^(\d{2})(\d{4})(\d{0,4})$/,
-          "($1) $2-$3"
-        );
 
-      } else if (valor.length > 2) {
+    telefoneInput.addEventListener(
+      "input",
+      function () {
 
-        valor = valor.replace(
-          /^(\d{2})(\d+)/,
-          "($1) $2"
-        );
+        let valor =
+          this.value.replace(/\D/g, "");
 
-      } else if (valor.length > 0) {
+        valor =
+          valor.substring(0, 11);
 
-        valor = valor.replace(
-          /^(\d{0,2})/,
-          "($1"
-        );
+
+        if (valor.length > 10) {
+
+          valor = valor.replace(
+            /^(\d{2})(\d{5})(\d{4})$/,
+            "($1) $2-$3"
+          );
+
+        }
+
+        else if (valor.length > 6) {
+
+          valor = valor.replace(
+            /^(\d{2})(\d{4})(\d{0,4})$/,
+            "($1) $2-$3"
+          );
+
+        }
+
+        else if (valor.length > 2) {
+
+          valor = valor.replace(
+            /^(\d{2})(\d+)/,
+            "($1) $2"
+          );
+
+        }
+
+        else if (valor.length > 0) {
+
+          valor = valor.replace(
+            /^(\d{0,2})/,
+            "($1"
+          );
+
+        }
+
+        this.value = valor;
+
       }
-
-      this.value = valor;
-    });
+    );
 
 
-    function mostrarMensagem(texto, tipo) {
+    function mostrarMensagem(
+      texto,
+      tipo
+    ) {
 
-      mensagem.textContent = texto;
-      mensagem.className = "mensagem " + tipo;
+      const icone =
+        tipo === "sucesso"
+
+          ? `
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="12" cy="12" r="9"/>
+              <path d="m8 12 2.5 2.5L16 9"/>
+            </svg>
+          `
+
+          : `
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="12" cy="12" r="9"/>
+              <path d="M12 8v5"/>
+              <path d="M12 16h.01"/>
+            </svg>
+          `;
+
+
+      mensagem.innerHTML =
+        icone +
+        `<span>${texto}</span>`;
+
+      mensagem.className =
+        "mensagem " + tipo;
 
     }
 
 
-    form.addEventListener("submit", async function (event) {
+    function definirCarregamento(
+      carregando
+    ) {
 
-      event.preventDefault();
-
-      mensagem.className = "mensagem";
-      mensagem.textContent = "";
-
-      const nome =
-        document.getElementById("nome").value.trim();
-
-      const telefone =
-        telefoneInput.value.replace(/\D/g, "");
-
-      const indicacao =
-        document.getElementById("indicacao").value.trim();
+      botao.disabled = carregando;
 
 
-      if (nome.length < 3) {
+      if (carregando) {
 
-        mostrarMensagem(
-          "Informe seu nome completo.",
-          "erro"
-        );
+        conteudoBotao.textContent =
+          "Enviando...";
 
-        return;
+        iconeBotao.style.display =
+          "none";
+
+        const spinner =
+          document.createElement("span");
+
+        spinner.className =
+          "spinner";
+
+        spinner.id =
+          "spinnerBotao";
+
+        botao.appendChild(spinner);
+
       }
 
+      else {
 
-      if (
-        telefone.length < 10 ||
-        telefone.length > 11
-      ) {
+        conteudoBotao.textContent =
+          "Realizar cadastro";
 
-        mostrarMensagem(
-          "Informe um telefone válido com DDD.",
-          "erro"
-        );
+        iconeBotao.style.display =
+          "block";
 
-        return;
-      }
-
-
-      botao.disabled = true;
-      botao.textContent = "Enviando...";
-
-
-      try {
-
-        const resposta = await fetch(API_URL, {
-
-          method: "POST",
-
-          headers: {
-            "Content-Type": "text/plain;charset=utf-8"
-          },
-
-          body: JSON.stringify({
-            nome: nome,
-            telefone: telefone,
-            indicacao: indicacao
-          })
-
-        });
-
-
-        const dados = await resposta.json();
-
-
-        if (dados.sucesso) {
-
-          mostrarMensagem(
-            "Cadastro realizado com sucesso!",
-            "sucesso"
+        const spinner =
+          document.getElementById(
+            "spinnerBotao"
           );
 
-          form.reset();
+        if (spinner) {
+          spinner.remove();
+        }
 
-        } else {
+      }
+
+    }
+
+
+    form.addEventListener(
+      "submit",
+      async function (event) {
+
+        event.preventDefault();
+
+
+        mensagem.className =
+          "mensagem";
+
+        mensagem.innerHTML =
+          "";
+
+
+        const nome =
+          document
+            .getElementById("nome")
+            .value
+            .trim();
+
+
+        const telefone =
+          telefoneInput
+            .value
+            .replace(/\D/g, "");
+
+
+        const indicacao =
+          document
+            .getElementById("indicacao")
+            .value
+            .trim();
+
+
+        if (nome.length < 3) {
 
           mostrarMensagem(
-            dados.mensagem ||
-            "Não foi possível realizar o cadastro.",
+            "Informe seu nome completo.",
             "erro"
           );
+
+          return;
+
         }
 
 
-      } catch (erro) {
+        if (
+          telefone.length < 10 ||
+          telefone.length > 11
+        ) {
 
-        console.error(erro);
+          mostrarMensagem(
+            "Informe um telefone válido com DDD.",
+            "erro"
+          );
 
-        mostrarMensagem(
-          "Não foi possível enviar o cadastro. Verifique sua conexão e tente novamente.",
-          "erro"
-        );
+          return;
 
-      } finally {
+        }
 
-        botao.disabled = false;
-        botao.textContent = "Realizar cadastro";
+
+        definirCarregamento(true);
+
+
+        try {
+
+          const resposta =
+            await fetch(
+              API_URL,
+              {
+
+                method: "POST",
+
+                headers: {
+                  "Content-Type":
+                    "text/plain;charset=utf-8"
+                },
+
+                body: JSON.stringify({
+                  nome: nome,
+                  telefone: telefone,
+                  indicacao: indicacao
+                })
+
+              }
+            );
+
+
+          const dados =
+            await resposta.json();
+
+
+          if (dados.sucesso) {
+
+            mostrarMensagem(
+              "Cadastro realizado com sucesso!",
+              "sucesso"
+            );
+
+            form.reset();
+
+          }
+
+          else {
+
+            mostrarMensagem(
+              dados.mensagem ||
+              "Não foi possível realizar o cadastro.",
+              "erro"
+            );
+
+          }
+
+        }
+
+        catch (erro) {
+
+          console.error(erro);
+
+          mostrarMensagem(
+            "Não foi possível enviar o cadastro. Verifique sua conexão e tente novamente.",
+            "erro"
+          );
+
+        }
+
+        finally {
+
+          definirCarregamento(false);
+
+        }
 
       }
-
-    });
+    );
 
   </script>
 
