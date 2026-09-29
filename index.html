@@ -487,6 +487,20 @@
 
         <form id="formCadastro">
 
+          <div
+            style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;"
+            aria-hidden="true"
+          >
+            <label for="website">Website</label>
+            <input
+              type="text"
+              id="website"
+              name="website"
+              tabindex="-1"
+              autocomplete="off"
+            >
+          </div>
+
           <div class="form-group">
 
             <label for="nome">
@@ -947,7 +961,11 @@
                 body: JSON.stringify({
                   nome: nome,
                   telefone: telefone,
-                  indicacao: indicacao
+                  indicacao: indicacao,
+                  website: document
+                    .getElementById("website")
+                    .value
+                    .trim()
                 })
 
               }
