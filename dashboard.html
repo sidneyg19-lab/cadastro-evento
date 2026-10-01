@@ -38,10 +38,24 @@ h1{font-size:25px;letter-spacing:-.6px}.sub{font-size:11px;color:var(--muted);ma
 .chart-area{height:270px;display:flex;align-items:flex-end;gap:8px;border-bottom:1px solid var(--line);padding:20px 5px 0}.bar-wrap{height:100%;flex:1;display:flex;align-items:flex-end;justify-content:center;position:relative}.bar{width:min(38px,65%);min-height:3px;border-radius:7px 7px 2px 2px;background:linear-gradient(180deg,var(--blue2),#2268d5);box-shadow:0 0 22px rgba(51,136,255,.12);transition:.5s}.bar:hover{filter:brightness(1.18)}.bar-wrap span{position:absolute;bottom:-22px;font-size:9px;color:var(--muted)}.bar-value{position:absolute;bottom:calc(var(--h) + 5px);font-size:9px;color:#b9c7d9}
 .insights{display:grid;grid-template-columns:1fr 1fr;gap:9px}.metric{border:1px solid var(--line);background:rgba(255,255,255,.025);border-radius:11px;padding:13px}.metric b{display:block;font-size:19px;margin-top:7px}.metric .mini{font-size:9px}
 .meta-ring-wrap{display:flex;align-items:center;gap:18px;margin-top:16px;padding-top:15px;border-top:1px solid var(--line)}.ring{--pct:0;width:82px;height:82px;border-radius:50%;background:conic-gradient(var(--blue) calc(var(--pct)*1%),rgba(255,255,255,.06) 0);display:grid;place-items:center;position:relative}.ring:after{content:"";width:62px;height:62px;border-radius:50%;background:#0b192b;position:absolute}.ring strong{z-index:1;font-size:15px}.ring-copy b{font-size:13px}.ring-copy p{font-size:10px;color:var(--muted);margin-top:5px;line-height:1.45}
-.bottom{display:grid;grid-template-columns:1fr 1fr;gap:12px}.rank{display:flex;flex-direction:column;gap:7px}.rank-row{display:grid;grid-template-columns:30px 1fr auto;gap:9px;align-items:center;padding:9px 10px;border-radius:10px;border:1px solid rgba(255,255,255,.05);background:rgba(255,255,255,.02)}.place{font-weight:900;color:var(--amber);font-size:12px}.rank-name{font-size:11px;font-weight:800}.rank-sub{font-size:9px;color:var(--muted);margin-top:3px}.rank-count{font-weight:900;font-size:13px}
-.feed{display:flex;flex-direction:column}.feed-item{display:grid;grid-template-columns:42px 1fr;gap:10px;padding:9px 2px;border-bottom:1px solid var(--line)}.feed-item:last-child{border:0}.time{font-size:10px;color:var(--blue2);font-weight:850}.feed-text{font-size:11px;font-weight:700}.feed-text small{display:block;font-size:9px;color:var(--muted);font-weight:400;margin-top:3px}
+.bottom{display:grid;grid-template-columns:1fr 1fr;gap:12px}.rank{display:flex;flex-direction:column;gap:7px;max-height:390px;overflow-y:auto;padding-right:4px;scrollbar-width:thin}.rank::-webkit-scrollbar{width:6px}.rank::-webkit-scrollbar-thumb{background:rgba(99,173,255,.28);border-radius:999px}.rank-row{display:grid;grid-template-columns:30px 1fr auto;gap:9px;align-items:center;padding:9px 10px;border-radius:10px;border:1px solid rgba(255,255,255,.05);background:rgba(255,255,255,.02)}.place{font-weight:900;color:var(--amber);font-size:12px}.rank-name{font-size:11px;font-weight:800}.rank-sub{font-size:9px;color:var(--muted);margin-top:3px}.rank-count{font-weight:900;font-size:13px}
+.feed{display:flex;flex-direction:column;max-height:390px;overflow-y:auto;padding-right:4px;scrollbar-width:thin}.feed::-webkit-scrollbar{width:6px}.feed::-webkit-scrollbar-thumb{background:rgba(99,173,255,.28);border-radius:999px}.feed-item{display:grid;grid-template-columns:42px 1fr;gap:10px;padding:9px 2px;border-bottom:1px solid var(--line)}.feed-item:last-child{border:0}.time{font-size:10px;color:var(--blue2);font-weight:850}.feed-text{font-size:11px;font-weight:700}.feed-text small{display:block;font-size:9px;color:var(--muted);font-weight:400;margin-top:3px}
 .footer{display:flex;justify-content:space-between;gap:10px;color:#53657b;font-size:9px;margin-top:14px}.loading{opacity:.6}.error{color:var(--red)!important}
 .mobile-menu{display:none}
+.view{display:none}.view.active{display:block}
+.nav a{cursor:pointer}
+.module-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:14px}
+.module-head h2{font-size:20px}.module-head p{font-size:10px;color:var(--muted);margin-top:4px}
+.module-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.big-stat{font-size:42px;font-weight:900;letter-spacing:-1.5px;margin-top:8px}
+.full-card{min-height:560px}
+.table-head,.table-row{display:grid;grid-template-columns:70px 1fr 1fr;gap:12px;align-items:center}
+.table-head{padding:10px 12px;color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:.08em;border-bottom:1px solid var(--line)}
+.table-row{padding:12px;border-bottom:1px solid var(--line);font-size:11px}
+.table-row:last-child{border-bottom:0}
+.scroll-list{max-height:520px;overflow:auto;scrollbar-width:thin}
+.empty{padding:28px;color:var(--muted);font-size:11px;text-align:center}
+@media(max-width:850px){.module-grid{grid-template-columns:1fr}.mobile-menu{display:block}}
 @media(max-width:1100px){.app{grid-template-columns:180px 1fr}.kpis{grid-template-columns:repeat(3,1fr)}.kpis .card:nth-child(4),.kpis .card:nth-child(5){grid-column:span 1}}
 @media(max-width:850px){.app{display:block}.sidebar{display:none}.main{padding:18px 14px}.mobile-menu{display:block;color:var(--muted);font-size:10px}.kpis{grid-template-columns:repeat(2,1fr)}.kpis .card:last-child{grid-column:span 2}.dashboard-grid,.bottom{grid-template-columns:1fr}.top-right .status:first-child{display:none}}
 @media(max-width:500px){h1{font-size:21px}.top{align-items:flex-start}.kpis{gap:8px}.card{padding:13px}.value{font-size:24px}.chart-area{height:220px}.insights{grid-template-columns:1fr 1fr}.footer{flex-direction:column}}
@@ -55,11 +69,11 @@ h1{font-size:25px;letter-spacing:-.6px}.sub{font-size:11px;color:var(--muted);ma
       <small>Central de Inteligência</small>
     </div>
     <nav class="nav">
-      <a class="active" href="#"><span class="nav-icon">▦</span> Dashboard</a>
-      <a href="#cadastros"><span class="nav-icon">♙</span> Cadastros</a>
-      <a href="#indicacoes"><span class="nav-icon">◎</span> Indicações</a>
-      <a href="#analises"><span class="nav-icon">⌁</span> Análises</a>
-      <a href="#atividade"><span class="nav-icon">◷</span> Atividade</a>
+      <a class="active" href="#dashboard" data-view="dashboard"><span class="nav-icon">▦</span> Dashboard</a>
+      <a href="#cadastros" data-view="cadastros"><span class="nav-icon">♙</span> Cadastros</a>
+      <a href="#indicacoes" data-view="indicacoes"><span class="nav-icon">◎</span> Indicações</a>
+      <a href="#analises" data-view="analises"><span class="nav-icon">⌁</span> Análises</a>
+      <a href="#atividade" data-view="atividade"><span class="nav-icon">◷</span> Atividade</a>
     </nav>
     <div class="side-bottom">Monitoramento do evento<br><b style="color:#a9b7c9">Dados em tempo real</b></div>
   </aside>
@@ -77,6 +91,7 @@ h1{font-size:25px;letter-spacing:-.6px}.sub{font-size:11px;color:var(--muted);ma
       </div>
     </header>
 
+    <div class="view active" id="view-dashboard">
     <section class="kpis" id="cadastros">
       <div class="card"><div class="label">Total de cadastros</div><div class="value" id="total">—</div><div class="mini">base consolidada</div></div>
       <div class="card"><div class="label">Cadastros hoje</div><div class="value" id="today">—</div><div class="mini">atividade do dia</div></div>
@@ -115,6 +130,36 @@ h1{font-size:25px;letter-spacing:-.6px}.sub{font-size:11px;color:var(--muted);ma
         <div class="feed" id="feed"><div class="mini">Carregando atividade...</div></div>
       </div>
     </section>
+
+
+    </div>
+
+    <div class="view" id="view-cadastros">
+      <div class="module-head"><div><div class="eyebrow">Módulo</div><h2>Cadastros</h2><p>Resumo operacional dos registros recebidos.</p></div><span class="tag">tempo real</span></div>
+      <section class="module-grid">
+        <div class="card"><div class="label">Total consolidado</div><div class="big-stat" id="cadTotal">—</div><div class="mini">registros válidos na base</div></div>
+        <div class="card"><div class="label">Hoje</div><div class="big-stat" id="cadToday">—</div><div class="mini">cadastros no dia</div></div>
+      </section>
+      <div class="card" style="margin-top:12px"><div class="panel-title"><h2>Cadastros mais recentes</h2><span class="tag">últimos registros</span></div><div id="cadRecent" class="scroll-list"></div></div>
+    </div>
+
+    <div class="view" id="view-indicacoes">
+      <div class="module-head"><div><div class="eyebrow">Módulo</div><h2>Indicações</h2><p>Ranking consolidado de desempenho.</p></div><span class="tag">ranking completo</span></div>
+      <div class="card full-card"><div class="panel-title"><h2>🏆 Ranking geral de indicações</h2><span class="tag" id="rankCount">—</span></div><div class="rank" id="rankingFull" style="max-height:500px"></div></div>
+    </div>
+
+    <div class="view" id="view-analises">
+      <div class="module-head"><div><div class="eyebrow">Módulo</div><h2>Análises</h2><p>Leitura gerencial do ritmo e evolução do evento.</p></div><span class="tag">inteligência</span></div>
+      <section class="dashboard-grid">
+        <div class="card"><div class="panel-title"><h2>Evolução por hora</h2><span class="tag">volume</span></div><div class="chart-area" id="chartAnalysis"></div></div>
+        <div class="card"><div class="label">Leitura executiva</div><div id="analysisText" style="font-size:13px;line-height:1.8;margin-top:15px;color:#c5d1df"></div></div>
+      </section>
+    </div>
+
+    <div class="view" id="view-atividade">
+      <div class="module-head"><div><div class="eyebrow">Módulo</div><h2>Atividade</h2><p>Acompanhamento dos registros mais recentes.</p></div><span class="tag">ao vivo</span></div>
+      <div class="card full-card"><div class="panel-title"><h2>Atividade em tempo real</h2><span class="tag">atualização automática</span></div><div class="feed" id="feedFull" style="max-height:500px"></div></div>
+    </div>
 
     <div class="footer"><span>DF Sem Privilégios • Dados em tempo real</span><span id="updated">Conectando à base...</span></div>
   </main>
@@ -159,7 +204,7 @@ function renderRanking(items,total){
   if(!Array.isArray(items)||!items.length){
     $("ranking").innerHTML='<div class="mini">Nenhuma indicação registrada.</div>'; return;
   }
-  $("ranking").innerHTML=items.slice(0,7).map((x,i)=>{
+  $("ranking").innerHTML=items.map((x,i)=>{
     const name=x.nome||"Sem indicação";
     const v=num(x.quantidade);
     const share=total?((v/total)*100):0;
@@ -174,12 +219,62 @@ function renderFeed(items){
   if(!Array.isArray(items)||!items.length){
     $("feed").innerHTML='<div class="mini">Nenhum registro recente.</div>'; return;
   }
-  $("feed").innerHTML=items.slice(0,7).map(x=>{
+  $("feed").innerHTML=items.map(x=>{
     const indication=(x.indicacao||"").trim();
     return `<div class="feed-item"><div class="time">${esc(x.hora||"--:--")}</div>
       <div class="feed-text">Novo cadastro<small>${indication?"Indicação: "+esc(indication):"Sem indicação"}</small></div></div>`;
   }).join("");
 }
+
+
+function canonicalName(name){
+  const raw=String(name||"").trim();
+  const k=raw.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase()
+    .replace(/[.,]/g," ").replace(/\s+/g," ").trim();
+  if(!k || k==="sem indicacao") return "Sem indicação";
+  if(k.includes("diego andrade")) return "Diego Andrade";
+  if(k.includes("sidney")) return "Sidney";
+  if(k.includes("flavia") && (k.includes("roch") || k.includes("doutora") || k.includes("dra"))) return "Dra. Flávia Rocha";
+  return raw;
+}
+function consolidateRanking(items){
+  const map=new Map();
+  (Array.isArray(items)?items:[]).forEach(x=>{
+    const n=canonicalName(x.nome);
+    map.set(n,(map.get(n)||0)+num(x.quantidade));
+  });
+  return [...map.entries()].map(([nome,quantidade])=>({nome,quantidade})).sort((a,b)=>b.quantidade-a.quantidade);
+}
+function rankingHTML(items,total){
+  return items.map((x,i)=>{
+    const v=num(x.quantidade), share=total?((v/total)*100):0;
+    const place=i<3?["🥇","🥈","🥉"][i]:"#"+(i+1);
+    return `<div class="rank-row"><div class="place">${place}</div><div><div class="rank-name">${esc(x.nome)}</div><div class="rank-sub">${pct(share)} dos cadastros</div></div><div class="rank-count">${br(v)}</div></div>`;
+  }).join("");
+}
+function feedHTML(items){
+  return (Array.isArray(items)?items:[]).map(x=>{
+    const indication=(x.indicacao||"").trim();
+    return `<div class="feed-item"><div class="time">${esc(x.hora||"--:--")}</div><div class="feed-text">Novo cadastro<small>${indication?"Indicação: "+esc(canonicalName(indication)):"Sem indicação"}</small></div></div>`;
+  }).join("");
+}
+function chartHTML(items){
+  if(!Array.isArray(items)||!items.length) return '<span class="mini">Ainda não há dados por hora.</span>';
+  const max=Math.max(...items.map(x=>num(x.quantidade)),1);
+  return items.map(x=>{
+    const v=num(x.quantidade), h=Math.max(3,(v/max)*100), label=String(x.hora||"").replace(":00","h");
+    return `<div class="bar-wrap"><div class="bar-value" style="bottom:calc(${h}% + 5px)">${v}</div><div class="bar" style="height:${h}%"></div><span>${esc(label)}</span></div>`;
+  }).join("");
+}
+function openView(name){
+  document.querySelectorAll(".view").forEach(v=>v.classList.toggle("active",v.id==="view-"+name));
+  document.querySelectorAll(".nav a").forEach(a=>a.classList.toggle("active",a.dataset.view===name));
+  history.replaceState(null,"","#"+name);
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+document.querySelectorAll(".nav a[data-view]").forEach(a=>a.addEventListener("click",e=>{
+  e.preventDefault(); openView(a.dataset.view);
+}));
 
 function render(data){
   const total=num(data.total), today=num(data.hoje), lastHour=num(data.ultimaHora);
@@ -209,9 +304,19 @@ function render(data){
   $("ringPct").textContent=pct(progress);
   $("ringText").textContent=`${br(total)} de ${br(meta)} cadastros. Faltam ${br(Math.max(meta-total,0))} para a meta.`;
 
+  const consolidated=consolidateRanking(data.ranking);
   renderChart(data.porHora);
-  renderRanking(data.ranking,total);
+  $("ranking").innerHTML=rankingHTML(consolidated,total)||'<div class="mini">Nenhuma indicação registrada.</div>';
   renderFeed(data.atividade);
+
+  $("cadTotal").textContent=br(total);
+  $("cadToday").textContent=br(today);
+  $("cadRecent").innerHTML=feedHTML(data.atividade)||'<div class="empty">Nenhum cadastro recente.</div>';
+  $("rankingFull").innerHTML=rankingHTML(consolidated,total)||'<div class="empty">Nenhuma indicação registrada.</div>';
+  $("rankCount").textContent=consolidated.length+" indicações";
+  $("feedFull").innerHTML=feedHTML(data.atividade)||'<div class="empty">Nenhuma atividade recente.</div>';
+  $("chartAnalysis").innerHTML=chartHTML(data.porHora);
+  $("analysisText").innerHTML=`<b>${br(total)}</b> cadastros acumulados.<br><b>${br(lastHour)}</b> na última hora.<br>Pico em <b>${esc(peak.hora||"—")}</b>.<br>Média de <b>${String(data.mediaHora??"—").replace(".",",")}/h</b>.<br>Projeção atual de <b>~ ${br(data.projecao)}</b> cadastros.`;
 
   const now=new Date();
   $("updated").textContent="Última atualização: "+now.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit",second:"2-digit"});
@@ -238,6 +343,8 @@ async function loadDashboard(){
 tick();
 setInterval(tick,1000);
 loadDashboard();
+const initialView=location.hash.replace("#","");
+if(["dashboard","cadastros","indicacoes","analises","atividade"].includes(initialView)) openView(initialView);
 setInterval(loadDashboard,REFRESH_MS);
 </script>
 </body>
