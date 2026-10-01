@@ -598,6 +598,60 @@
       cursor: pointer;
     }
 
+
+    .unlock-reveal {
+      opacity: 0;
+      transform: translateY(14px) scale(.985);
+      filter: blur(3px);
+      transition:
+        opacity .55s ease,
+        transform .55s cubic-bezier(.2,.8,.2,1),
+        filter .55s ease;
+    }
+
+    .unlock-reveal.desbloqueado {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+    }
+
+    .unlock-pill {
+      width: fit-content;
+      max-width: 100%;
+      margin: 0 auto 12px;
+      padding: 9px 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      border: 1px solid rgba(37,99,235,.15);
+      border-radius: 999px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-size: 12px;
+      font-weight: 850;
+      box-shadow: 0 8px 20px rgba(37,99,235,.08);
+    }
+
+    .unlock-icon {
+      display: inline-block;
+      animation: unlock-pop .7s cubic-bezier(.2,.9,.25,1.2) both;
+    }
+
+    .unlock-copy {
+      max-width: 360px;
+      margin: 0 auto 17px;
+      color: #667085;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    @keyframes unlock-pop {
+      0% { transform: scale(.55) rotate(-10deg); opacity: 0; }
+      65% { transform: scale(1.16) rotate(4deg); opacity: 1; }
+      100% { transform: scale(1) rotate(0); opacity: 1; }
+    }
+
     .success-footer {
       margin-top: 17px;
       font-size: 11px;
@@ -924,9 +978,19 @@
             <h2>Cadastro realizado!</h2>
 
             <p class="success-intro">
-              Obrigado por participar. Agora acompanhe Paulo Sá
-              e fique por dentro das novidades.
+              Tudo certo! Seu cadastro foi confirmado.
             </p>
+
+            <div class="unlock-reveal" id="unlockReveal">
+              <div class="unlock-pill">
+                <span class="unlock-icon">🔓</span>
+                <span>Próximo passo desbloqueado</span>
+              </div>
+
+              <p class="unlock-copy">
+                Agora você pode acompanhar Paulo Sá e ficar por dentro
+                das próximas novidades, ações e conteúdos.
+              </p>
 
             <div class="candidate-card">
 
@@ -967,9 +1031,11 @@
                   <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
                 </svg>
 
-                Seguir no Instagram
+                Acompanhar Paulo Sá no Instagram
+                <span aria-hidden="true">→</span>
               </a>
 
+            </div>
             </div>
 
             <button
@@ -1057,6 +1123,9 @@
     const btnNovoCadastro =
       document.getElementById("btnNovoCadastro");
 
+    const unlockReveal =
+      document.getElementById("unlockReveal");
+
 
     function dispararConfetes() {
 
@@ -1111,6 +1180,10 @@
         successScreen.classList.remove(
           "ativo"
         );
+
+        if (unlockReveal) {
+          unlockReveal.classList.remove("desbloqueado");
+        }
 
         form.style.display =
           "";
@@ -1404,6 +1477,15 @@
             });
 
             dispararConfetes();
+
+            if (unlockReveal) {
+              unlockReveal.classList.remove("desbloqueado");
+
+              setTimeout(
+                () => unlockReveal.classList.add("desbloqueado"),
+                650
+              );
+            }
 
           }
 
