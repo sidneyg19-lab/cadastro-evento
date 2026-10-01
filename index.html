@@ -424,99 +424,184 @@
 
     .success-screen {
       display: none;
-      text-align: center;
-      padding: 4px 0 2px;
     }
 
     .success-screen.ativo {
-      display: block;
+      position: fixed;
+      inset: 0;
+      z-index: 5000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow-y: auto;
+      padding: 24px 16px;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(96,165,250,.30), transparent 32%),
+        linear-gradient(180deg, #eff6ff 0%, #f8fafc 46%, #ffffff 100%);
+      animation: success-enter .42s ease-out;
+    }
+
+    @keyframes success-enter {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .success-inner {
+      width: 100%;
+      max-width: 430px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .success-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      padding: 8px 13px;
+      border: 1px solid rgba(37,99,235,.14);
+      border-radius: 999px;
+      background: rgba(255,255,255,.72);
+      color: #1d4ed8;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .2px;
+      backdrop-filter: blur(8px);
     }
 
     .success-badge {
-      width: 68px;
-      height: 68px;
+      width: 74px;
+      height: 74px;
       margin: 0 auto 16px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 32px;
-      background: var(--success-bg);
+      font-size: 34px;
+      background: #ecfdf3;
+      box-shadow: 0 12px 30px rgba(6,118,71,.12);
     }
 
     .success-screen h2 {
-      font-size: 25px;
-      line-height: 1.2;
+      font-size: 30px;
+      line-height: 1.12;
+      letter-spacing: -0.7px;
       color: #101828;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .success-intro {
-      font-size: 14px;
+      max-width: 350px;
+      margin: 0 auto 22px;
+      font-size: 15px;
       line-height: 1.55;
       color: var(--muted);
-      margin-bottom: 22px;
     }
 
     .candidate-card {
-      border: 1px solid #eaecf0;
-      border-radius: 18px;
-      padding: 20px;
-      background: #fff;
-      box-shadow: 0 8px 24px rgba(16, 24, 40, 0.06);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(37,99,235,.12);
+      border-radius: 24px;
+      padding: 25px 22px 22px;
+      background: rgba(255,255,255,.94);
+      box-shadow: 0 24px 55px rgba(16,24,40,.12);
+    }
+
+    .candidate-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, #1d4ed8, #2563eb, #60a5fa);
     }
 
     .candidate-photo {
-      width: 112px;
-      height: 112px;
+      width: 138px;
+      height: 138px;
       object-fit: cover;
       border-radius: 50%;
       display: block;
-      margin: 0 auto 13px;
+      margin: 0 auto 15px;
+      border: 4px solid #fff;
+      box-shadow: 0 0 0 2px #2563eb, 0 12px 28px rgba(16,24,40,.14);
     }
 
     .candidate-card h3 {
-      font-size: 20px;
+      font-size: 25px;
       color: #101828;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
 
     .candidate-number {
-      font-size: 15px;
-      font-weight: 800;
+      font-size: 23px;
+      font-weight: 900;
+      letter-spacing: .8px;
       color: var(--primary);
-      margin-bottom: 15px;
+      margin-bottom: 17px;
+    }
+
+    .candidate-handle {
+      margin: -9px 0 17px;
+      font-size: 13px;
+      color: #667085;
     }
 
     .instagram-button {
-      min-height: 49px;
+      min-height: 54px;
       width: 100%;
       border: 0;
-      border-radius: 12px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 10px;
       text-decoration: none;
       font-family: inherit;
       font-size: 15px;
-      font-weight: 700;
+      font-weight: 800;
       color: #fff;
-      background: #101828;
+      background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+      box-shadow: 0 12px 24px rgba(225,48,108,.18);
+      transition: transform .15s ease, box-shadow .2s ease;
+    }
+
+    .instagram-button:active {
+      transform: scale(.985);
+    }
+
+    .instagram-icon {
+      width: 21px;
+      height: 21px;
+      flex: 0 0 auto;
     }
 
     .new-registration {
       margin-top: 14px;
       width: 100%;
-      min-height: 47px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: #fff;
+      min-height: 49px;
+      border: 1px solid #d0d5dd;
+      border-radius: 14px;
+      background: rgba(255,255,255,.78);
       color: #344054;
       font-family: inherit;
       font-size: 14px;
-      font-weight: 700;
+      font-weight: 750;
       cursor: pointer;
+    }
+
+    .success-footer {
+      margin-top: 17px;
+      font-size: 11px;
+      color: #98a2b3;
     }
 
     .confetti {
@@ -828,41 +913,78 @@
           class="success-screen"
           aria-live="polite"
         >
-          <div class="success-badge">🎉</div>
+          <div class="success-inner">
 
-          <h2>Cadastro realizado com sucesso!</h2>
+            <div class="success-brand">
+              DF Sem Privilégios
+            </div>
 
-          <p class="success-intro">
-            Obrigado por participar. Acompanhe Paulo Sá no Instagram.
-          </p>
+            <div class="success-badge">✓</div>
 
-          <div class="candidate-card">
-            <img
-              src="paulo-sa-campanha.jpeg"
-              alt="Paulo Sá"
-              class="candidate-photo"
+            <h2>Cadastro realizado!</h2>
+
+            <p class="success-intro">
+              Obrigado por participar. Agora acompanhe Paulo Sá
+              e fique por dentro das novidades.
+            </p>
+
+            <div class="candidate-card">
+
+              <img
+                src="paulo-sa-campanha.jpeg"
+                alt="Paulo Sá"
+                class="candidate-photo"
+              >
+
+              <h3>Paulo Sá</h3>
+
+              <div class="candidate-number">
+                7088
+              </div>
+
+              <div class="candidate-handle">
+                @paulo_sa____
+              </div>
+
+              <a
+                class="instagram-button"
+                href="https://www.instagram.com/paulo_sa____?stkn=M2xwZmtwZHR2bTA4"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <svg
+                  class="instagram-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="5"/>
+                  <circle cx="12" cy="12" r="4"/>
+                  <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+                </svg>
+
+                Seguir no Instagram
+              </a>
+
+            </div>
+
+            <button
+              type="button"
+              id="btnNovoCadastro"
+              class="new-registration"
             >
+              Fazer outro cadastro
+            </button>
 
-            <h3>Paulo Sá</h3>
-            <div class="candidate-number">7088</div>
+            <div class="success-footer">
+              Ambiente seguro • Cadastro do evento
+            </div>
 
-            <a
-              class="instagram-button"
-              href="https://www.instagram.com/paulo_sa____?stkn=M2xwZmtwZHR2bTA4"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              📸 Seguir no Instagram
-            </a>
           </div>
-
-          <button
-            type="button"
-            id="btnNovoCadastro"
-            class="new-registration"
-          >
-            Fazer novo cadastro
-          </button>
         </section>
 
 
