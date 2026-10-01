@@ -422,6 +422,118 @@
       color: #98a2b3;
     }
 
+    .success-screen {
+      display: none;
+      text-align: center;
+      padding: 4px 0 2px;
+    }
+
+    .success-screen.ativo {
+      display: block;
+    }
+
+    .success-badge {
+      width: 68px;
+      height: 68px;
+      margin: 0 auto 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      background: var(--success-bg);
+    }
+
+    .success-screen h2 {
+      font-size: 25px;
+      line-height: 1.2;
+      color: #101828;
+      margin-bottom: 8px;
+    }
+
+    .success-intro {
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--muted);
+      margin-bottom: 22px;
+    }
+
+    .candidate-card {
+      border: 1px solid #eaecf0;
+      border-radius: 18px;
+      padding: 20px;
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(16, 24, 40, 0.06);
+    }
+
+    .candidate-photo {
+      width: 112px;
+      height: 112px;
+      object-fit: cover;
+      border-radius: 50%;
+      display: block;
+      margin: 0 auto 13px;
+    }
+
+    .candidate-card h3 {
+      font-size: 20px;
+      color: #101828;
+      margin-bottom: 4px;
+    }
+
+    .candidate-number {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+
+    .instagram-button {
+      min-height: 49px;
+      width: 100%;
+      border: 0;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      background: #101828;
+    }
+
+    .new-registration {
+      margin-top: 14px;
+      width: 100%;
+      min-height: 47px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #fff;
+      color: #344054;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .confetti {
+      position: fixed;
+      top: -24px;
+      z-index: 9999;
+      pointer-events: none;
+      animation: confetti-fall linear forwards;
+    }
+
+    @keyframes confetti-fall {
+      to {
+        transform: translate3d(var(--drift), 110vh, 0) rotate(720deg);
+        opacity: 0.95;
+      }
+    }
+
     @media (max-width: 520px) {
 
       body {
@@ -711,6 +823,48 @@
 
         </form>
 
+        <section
+          id="successScreen"
+          class="success-screen"
+          aria-live="polite"
+        >
+          <div class="success-badge">🎉</div>
+
+          <h2>Cadastro realizado com sucesso!</h2>
+
+          <p class="success-intro">
+            Obrigado por participar. Acompanhe Paulo Sá no Instagram.
+          </p>
+
+          <div class="candidate-card">
+            <img
+              src="paulo-sa-campanha.jpeg"
+              alt="Paulo Sá"
+              class="candidate-photo"
+            >
+
+            <h3>Paulo Sá</h3>
+            <div class="candidate-number">7088</div>
+
+            <a
+              class="instagram-button"
+              href="https://www.instagram.com/paulo_sa____?stkn=M2xwZmtwZHR2bTA4"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              📸 Seguir no Instagram
+            </a>
+          </div>
+
+          <button
+            type="button"
+            id="btnNovoCadastro"
+            class="new-registration"
+          >
+            Fazer novo cadastro
+          </button>
+        </section>
+
 
         <div class="privacy">
 
@@ -770,6 +924,93 @@
 
     const iconeBotao =
       document.getElementById("iconeBotao");
+
+
+    const successScreen =
+      document.getElementById("successScreen");
+
+    const privacy =
+      document.querySelector(".privacy");
+
+    const btnNovoCadastro =
+      document.getElementById("btnNovoCadastro");
+
+
+    function dispararConfetes() {
+
+      const simbolos =
+        ["🎉", "🎊", "✨", "⭐"];
+
+      for (let i = 0; i < 70; i++) {
+
+        const confete =
+          document.createElement("span");
+
+        confete.className =
+          "confetti";
+
+        confete.textContent =
+          simbolos[
+            Math.floor(
+              Math.random() *
+              simbolos.length
+            )
+          ];
+
+        confete.style.left =
+          Math.random() * 100 + "vw";
+
+        confete.style.fontSize =
+          12 + Math.random() * 16 + "px";
+
+        confete.style.animationDuration =
+          1.8 + Math.random() * 1.8 + "s";
+
+        confete.style.setProperty(
+          "--drift",
+          -80 + Math.random() * 160 + "px"
+        );
+
+        document.body.appendChild(confete);
+
+        setTimeout(
+          () => confete.remove(),
+          4000
+        );
+      }
+
+    }
+
+
+    btnNovoCadastro.addEventListener(
+      "click",
+      function () {
+
+        successScreen.classList.remove(
+          "ativo"
+        );
+
+        form.style.display =
+          "";
+
+        privacy.style.display =
+          "";
+
+        form.reset();
+
+        mensagem.className =
+          "mensagem";
+
+        mensagem.innerHTML =
+          "";
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+
+      }
+    );
 
 
     telefoneInput.addEventListener(
@@ -1017,12 +1258,30 @@
 
           if (dados.sucesso) {
 
-            mostrarMensagem(
-              "Cadastro realizado com sucesso!",
-              "sucesso"
+            form.reset();
+
+            mensagem.className =
+              "mensagem";
+
+            mensagem.innerHTML =
+              "";
+
+            form.style.display =
+              "none";
+
+            privacy.style.display =
+              "none";
+
+            successScreen.classList.add(
+              "ativo"
             );
 
-            form.reset();
+            successScreen.scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
+
+            dispararConfetes();
 
           }
 
